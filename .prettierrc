@@ -1,0 +1,12 @@
+{
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "dot-notation": "allowPattern",
+  "endOfLine": "auto",
+  "printWidth": 100,
+  "quoteProps": "preserve",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "useTabs": false
+}
