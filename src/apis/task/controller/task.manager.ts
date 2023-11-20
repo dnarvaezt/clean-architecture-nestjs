@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Param, Post } from '@nestjs/common'
-import { TaskService } from '../repository/task.service'
+import { TaskService } from '../service'
 import { TaskModel } from '../task.model'
 
 @Controller('task')
