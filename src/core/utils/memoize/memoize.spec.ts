@@ -1,10 +1,10 @@
-import { ubitsMemoize } from './memoize'
+import { memoize } from './memoize'
 
-describe('ubitsMemoize', () => {
+describe('memoize', () => {
   it('should memoize the results correctly', () => {
     const simpleFunction = (a: number, b: number) => a + b
 
-    const memoizedFunction = ubitsMemoize(simpleFunction)
+    const memoizedFunction = memoize(simpleFunction)
 
     const result1 = memoizedFunction(2, 3)
     const result2 = memoizedFunction(2, 3)

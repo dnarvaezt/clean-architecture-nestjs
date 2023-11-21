@@ -11,10 +11,10 @@ describe('UbitsModel', () => {
       }
     }
 
-    const ubitsModel = new TestUbitsModel({ name: 'John Doe', age: 30 })
+    const model = new TestUbitsModel({ name: 'John Doe', age: 30 })
 
-    expect(ubitsModel.name).toBeUndefined()
-    expect(ubitsModel.age).toBeUndefined()
+    expect(model.name).toBeUndefined()
+    expect(model.age).toBeUndefined()
   })
 
   it('should inject properties from the init object', () => {
@@ -27,10 +27,10 @@ describe('UbitsModel', () => {
       }
     }
 
-    const ubitsModel = new TestUbitsModel({ name: 'John Doe', age: 30 })
+    const model = new TestUbitsModel({ name: 'John Doe', age: 30 })
 
-    expect(ubitsModel.name).toEqual('John Doe')
-    expect(ubitsModel.age).toEqual(30)
+    expect(model.name).toEqual('John Doe')
+    expect(model.age).toEqual(30)
   })
 
   it('should inject properties from the init object', () => {
@@ -43,19 +43,19 @@ describe('UbitsModel', () => {
       }
     }
 
-    const ubitsModel = new TestUbitsModel({ name: 'John Doe', age: 30 })
+    const model = new TestUbitsModel({ name: 'John Doe', age: 30 })
 
-    expect(ubitsModel.name).toEqual('John Doe')
-    expect(ubitsModel.age).toEqual(30)
+    expect(model.name).toEqual('John Doe')
+    expect(model.age).toEqual(30)
   })
 
   it('should handle undefined init objects', () => {
     class TestUbitsModel {}
 
-    const ubitsModel = new TestUbitsModel()
+    const model = new TestUbitsModel()
 
-    expect(ubitsModel['name']).toBeUndefined()
-    expect(ubitsModel['age']).toBeUndefined()
+    expect(model['name']).toBeUndefined()
+    expect(model['age']).toBeUndefined()
   })
 
   function globalTest(classTest) {

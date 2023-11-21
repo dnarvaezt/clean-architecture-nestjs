@@ -1,5 +1,5 @@
+import { EnvironmentEnum } from 'src/core/environment.enum'
 import { providerFactory } from './provider.factory'
-import { EnvironmentEnum } from '@ubits/library-enums'
 
 describe('providerFactory', () => {
   it('should return the correct provider for the specified environment', () => {
