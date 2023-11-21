@@ -1,11 +1,3 @@
-import { injectProperties } from 'src/core'
+import { TaskModel } from './task.model'
 
-export class TaskEntity {
-  public id: string = ''
-  public name: string = ''
-  public description: string = ''
-
-  constructor(init: Partial<TaskEntity> = {}) {
-    injectProperties<TaskEntity>(this, init)
-  }
-}
+export class TaskEntity extends TaskModel {}
