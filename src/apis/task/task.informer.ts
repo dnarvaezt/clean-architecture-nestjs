@@ -1,13 +1,13 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import { TaskService } from '../service'
-import { TaskModelDto } from './task.dto'
+import { TaskDto } from './task.dto'
+import { TaskService } from './task.service'
 
 @Controller('task')
 export class TaskInformer {
   constructor(private service: TaskService) {}
 
   @Get(':id')
-  async get(@Param('id') id: string): Promise<TaskModelDto> {
+  async get(@Param('id') id: string): Promise<TaskDto> {
     return this.service.get(id)
   }
 }

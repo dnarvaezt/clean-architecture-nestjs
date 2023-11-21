@@ -1,13 +1,13 @@
 import { Body, Controller, Delete, Param, Post } from '@nestjs/common'
-import { TaskService } from '../service'
-import { TaskModel } from '../task.model'
+import { TaskEntity } from './task.entity'
+import { TaskService } from './task.service'
 
 @Controller('task')
 export class TaskManager {
   constructor(private service: TaskService) {}
 
   @Post()
-  set(@Body() task: TaskModel) {
+  set(@Body() task: TaskEntity) {
     return this.service.set(task)
   }
 

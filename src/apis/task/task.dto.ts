@@ -1,11 +1,11 @@
 import { injectProperties } from 'src/core'
 
-export class TaskModel {
+export class TaskDto {
   public id: string = ''
   public name: string = ''
   public description: string = ''
 
-  constructor(init: Partial<TaskModel> = {}) {
-    injectProperties<TaskModel>(this, init)
+  constructor(init: Partial<TaskDto> = {}) {
+    injectProperties<TaskDto>(this, init)
   }
 }
