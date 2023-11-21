@@ -1,16 +1,16 @@
 import { FilterLogicalOperatorEnum, FilterOperatorEnum, SortEnum } from './filter.enums'
 
-export type IUbitsFilterArgs = Record<
+export type IFilterArgs = Record<
   string,
   { operator: FilterOperatorEnum; value: any; primary?: boolean }
 >
 
-export interface IUbitsFilterOrder {
+export interface IFilterOrder {
   key: string
   sort: SortEnum
 }
 
-export interface IUbitsFilterPage {
+export interface IFilterPage {
   start: number
   end: number
   length?: number
@@ -19,11 +19,11 @@ export interface IUbitsFilterPage {
   totalPages?: number
 }
 
-export interface IUbitsFilter {
-  args?: IUbitsFilterArgs
+export interface IFilter {
+  args?: IFilterArgs
   logicalOperator?: FilterLogicalOperatorEnum
-  order?: IUbitsFilterOrder
-  page?: IUbitsFilterPage
+  order?: IFilterOrder
+  page?: IFilterPage
   pageFrom?: number
   pageTo?: number
 }

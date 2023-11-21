@@ -1,17 +1,17 @@
 import { Repository } from '../repository'
-import { IUbitsFilter } from '../utils'
+import { IFilter } from '../utils'
 import { StrategySimpleRepository } from './strategy-simple-repository.provider'
 
 export class StrategyRepository<T> extends StrategySimpleRepository<T> implements Repository<T> {
-  async count(filter?: IUbitsFilter): Promise<number> {
+  async count(filter?: IFilter): Promise<number> {
     return this.mainStrategy('count', filter)
   }
 
-  async search(filter?: IUbitsFilter): Promise<any[]> {
+  async search(filter?: IFilter): Promise<any[]> {
     return this.mainStrategy('search', filter)
   }
 
-  async searchPaginator(filter?: IUbitsFilter): Promise<{ data: any[]; count: number }> {
+  async searchPaginator(filter?: IFilter): Promise<{ data: any[]; count: number }> {
     return this.mainStrategy('searchPaginator', filter)
   }
 

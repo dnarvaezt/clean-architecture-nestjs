@@ -1,16 +1,16 @@
 import { normalizeString } from '../normalize/normalize-string'
 import { FilterLogicalOperatorEnum, FilterOperatorEnum } from './filter.enums'
-import { IUbitsFilterArgs } from './filter.interface'
+import { IFilterArgs } from './filter.interface'
 
 type ValidationRecord = Record<string, boolean>
 
 export const filterObject = (
   logicalOperator: FilterLogicalOperatorEnum,
   items: any[],
-  args: IUbitsFilterArgs
+  args: IFilterArgs
 ): any[] => {
   if (!args || !items) return items || []
-  const currentArgs: IUbitsFilterArgs = getValidArgs(args)
+  const currentArgs: IFilterArgs = getValidArgs(args)
 
   return items.filter(item => {
     const validations: ValidationRecord = validateItemValues(currentArgs, item)
@@ -18,7 +18,7 @@ export const filterObject = (
   })
 }
 
-function getValidArgs(args: IUbitsFilterArgs) {
+function getValidArgs(args: IFilterArgs) {
   const currentArgs: any = {}
   for (const [key, { value }] of Object.entries(args)) {
     if (value !== null && value !== undefined && Boolean(`${value}`.trim())) {
@@ -32,7 +32,7 @@ function deserializeData(value: any): any {
   return JSON.parse(JSON.stringify(value))
 }
 
-function validateItemValues(args: IUbitsFilterArgs, item: Record<string, any>): ValidationRecord {
+function validateItemValues(args: IFilterArgs, item: Record<string, any>): ValidationRecord {
   const validations: any = {}
 
   Object.keys(args).forEach((key: string) => {
@@ -50,7 +50,7 @@ function validateItemValues(args: IUbitsFilterArgs, item: Record<string, any>): 
 }
 
 function validateByLogicalOperator(
-  args: IUbitsFilterArgs,
+  args: IFilterArgs,
   validations: ValidationRecord,
   logicalOperator: FilterLogicalOperatorEnum
 ) {
@@ -66,10 +66,7 @@ function validateByLogicalOperatorAnd(validations: ValidationRecord): boolean {
   return Object.values(validations).every(Boolean)
 }
 
-function validateByLogicalOperatorOr(
-  args: IUbitsFilterArgs,
-  validations: ValidationRecord
-): boolean {
+function validateByLogicalOperatorOr(args: IFilterArgs, validations: ValidationRecord): boolean {
   if (!Object.keys(args).length) return true
 
   const primaryKeys: boolean[] = []

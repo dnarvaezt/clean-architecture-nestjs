@@ -1,4 +1,4 @@
-import { IUbitsFilter } from '../utils'
+import { IFilter } from '../utils'
 
 export abstract class Repository<T> {
   abstract get(id: string, args?: any): Promise<T>
@@ -9,9 +9,9 @@ export abstract class Repository<T> {
 
   abstract delete(value: string | string[] | T | T[], args?: any): Promise<any>
 
-  abstract count(filter?: IUbitsFilter, args?: any): Promise<number>
+  abstract count(filter?: IFilter, args?: any): Promise<number>
 
-  abstract search(filter?: IUbitsFilter, args?: any): Promise<T[]>
+  abstract search(filter?: IFilter, args?: any): Promise<T[]>
 
-  abstract searchPaginator(filter?: IUbitsFilter, args?: any): Promise<{ data: T[]; count: number }>
+  abstract searchPaginator(filter?: IFilter, args?: any): Promise<{ data: T[]; count: number }>
 }

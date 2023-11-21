@@ -1,8 +1,8 @@
 import {
   FilterLogicalOperatorEnum,
   filterObject,
-  IUbitsFilter,
-  IUbitsFilterArgs,
+  IFilter,
+  IFilterArgs,
   sortObjects,
 } from '../utils'
 import { uuid } from '../utils/uuid/uuid'
@@ -49,12 +49,12 @@ export class MemoryRepository<T> implements Repository<T> {
     }
   }
 
-  async count(filter?: IUbitsFilter): Promise<number> {
+  async count(filter?: IFilter): Promise<number> {
     const data = (await this.search(filter)) || []
     return Promise.resolve(data.length)
   }
 
-  async search(filter?: IUbitsFilter): Promise<T[]> {
+  async search(filter?: IFilter): Promise<T[]> {
     const args = this.getArgsFilterSearch(filter?.args ? filter : null)
     const order = filter ? filter.order : null
     const logicalOperator = filter?.logicalOperator
@@ -75,11 +75,11 @@ export class MemoryRepository<T> implements Repository<T> {
     return Promise.resolve(currentItems || [])
   }
 
-  protected getArgsFilterSearch(filter: IUbitsFilter): IUbitsFilterArgs {
+  protected getArgsFilterSearch(filter: IFilter): IFilterArgs {
     return filter ? filter.args : null
   }
 
-  async searchPaginator(filter?: IUbitsFilter): Promise<{ data: T[]; count: number }> {
+  async searchPaginator(filter?: IFilter): Promise<{ data: T[]; count: number }> {
     const data = (await this.search(filter)) || []
 
     const countFilter = JSON.parse(JSON.stringify(filter)) || {}
@@ -97,7 +97,7 @@ export class MemoryRepository<T> implements Repository<T> {
     return data
   }
 
-  sliceData(filter: IUbitsFilter, data): any[] {
+  sliceData(filter: IFilter, data): any[] {
     data = data || []
     if (!filter?.page) return data
 
