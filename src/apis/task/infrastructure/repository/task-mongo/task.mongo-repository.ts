@@ -1,8 +1,8 @@
 import { Model } from 'mongoose'
+import { TaskModel } from 'src/apis/task/application'
 import { IFilter, Repository } from 'src/core'
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
-import { TaskModel } from '../../task.model'
 import { taskConnection } from './task.connection'
 import { TaskMongoModel } from './task.schema'
 
@@ -12,7 +12,8 @@ export class TaskMongoRepository extends Repository<TaskModel> {
   private taskModel: Model<TaskMongoModel> = taskConnection
 
   async get(id: string, args?: any): Promise<TaskModel> {
-    throw this.taskModel.findById(id).exec()
+    const item = await this.taskModel.findById(`${id}`).exec()
+    return this.inputFormat(item || {})
   }
 
   async set(value: TaskModel | TaskModel[], args?: any): Promise<any> {
@@ -34,11 +35,7 @@ export class TaskMongoRepository extends Repository<TaskModel> {
 
   async search(filter?: IFilter, args?: any): Promise<TaskModel[]> {
     const items = await this.taskModel.find().exec()
-    const a = items.map(item => {
-      return new TaskModel({ id: item.id, name: item.name })
-    })
-
-    return a
+    return items.map(item => this.inputFormat(item))
   }
 
   async searchPaginator(
@@ -46,5 +43,9 @@ export class TaskMongoRepository extends Repository<TaskModel> {
     args?: any
   ): Promise<{ data: TaskModel[]; count: number }> {
     throw new Error('Method not implemented.')
+  }
+
+  private inputFormat(data: any): TaskModel {
+    return new TaskModel(JSON.parse(JSON.stringify(data)))
   }
 }

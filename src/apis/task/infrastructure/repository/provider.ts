@@ -1,6 +1,6 @@
 import { providerFactory, Repository } from 'src/core'
 import { EnvironmentEnum } from 'src/core/environment.enum'
-import { TaskModel } from '../task.model'
+import { TaskModel } from '../../application'
 import { TaskMemoryRepository } from './task-memory/task.memory-repository'
 import { tasksData } from './task-memory/task.memory.data'
 import { TaskMongoRepository } from './task-mongo/task.mongo-repository'

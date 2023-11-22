@@ -1,10 +1,14 @@
 import { Document, HydratedDocument } from 'mongoose'
+import { TaskModel } from 'src/apis/task/application'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { TaskModel } from '../../task.model'
 
 @Schema()
 export class TaskMongoModel extends Document implements TaskModel {
-  @Prop()
+  @Prop({
+    unique: true,
+    index: true,
+    required: true,
+  })
   public id: string
 
   @Prop()

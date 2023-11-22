@@ -1,4 +1,4 @@
-import { TaskModel } from '../../task.model'
+import { TaskModel } from 'src/apis/task/application'
 
 export const tasksData: TaskModel[] = [
   new TaskModel({

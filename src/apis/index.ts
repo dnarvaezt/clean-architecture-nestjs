@@ -1,1 +1,1 @@
-export * from './task/task.module';
+export * from './task/task.module'
